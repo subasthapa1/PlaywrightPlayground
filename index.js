@@ -1,14 +1,17 @@
-// EDIT THIS FILE TO COMPLETE ASSIGNMENT QUESTION 1
-const { chromium } = require("playwright");
+const { chromium } = require('playwright');
 
 async function sortHackerNewsArticles() {
-  // launch browser
+  // Launch browser
   const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  // go to Hacker News
-  await page.goto("https://news.ycombinator.com/newest");
+  // Go to Hacker News
+  await page.goto('https://news.ycombinator.com/newest');
+
+  const articles = await page.$$('span.age a');
+
+  await browser.close();
 }
 
 (async () => {
